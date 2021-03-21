@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="ModelContext" p1:name="Model" p1:Guid="f6a2f613-f796-418c-9b93-b6fc660d59d1" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="$EnumTypes">
+    <EnumType Name="AgentFunction" UnderlyingType="Int16" class="AgentFunction" p1:Guid="01ab0ca7-c998-46ff-8613-4f317f74b1e9">
+      <Member Name="AgentCode" p1:Guid="49d7fb16-f2f1-4a1a-920b-d4ecfc5b4764" />
+      <Member Name="AgentConduite" p1:Guid="84451201-2e1a-4244-803b-072eac5e7529" />
+    </EnumType>
+    <EnumType Name="SeanceType" class="SeanceType" p1:Guid="f5b98e01-fc06-492d-974d-a21773281b76">
+      <Member Name="SeanceCode" p1:Guid="e89eac9d-6b96-4f14-a30b-9f6920a22f12" />
+      <Member Name="SeanceConduite" p1:Guid="fdb83584-bd81-412b-b530-9d2b6d1fe399" />
+    </EnumType>
+    <EnumType Name="ExamType" class="ExamType" p1:Guid="cff97f65-bc9e-4d35-a88c-273618e9c9e4">
+      <Member Name="ExamenCode" p1:Guid="049c7d54-132c-4174-a713-90e7d4ca6fae" />
+      <Member Name="ExamenConduite" p1:Guid="3a14f7a1-655b-43c0-82fe-b43dff407743" />
+    </EnumType>
+  </class>
+  <class name="Candidat" entity-set="Candidats" p1:Guid="dca3eca8-2d3a-499e-80cb-78e041d9570f">
+    <id name="CandidatCIN" type="Int16" p1:ValidateRequired="true" p1:Guid="69df4719-7b9d-4aec-8aa0-ef0156f3a370">
+      <column name="" />
+    </id>
+    <property name="Nom" type="String" p1:ValidateRequired="true" p1:Guid="1227b83d-0706-4d0d-9373-4cab50b1cf3c">
+      <column name="" />
+    </property>
+    <property name="Prenom" type="String" p1:ValidateRequired="true" p1:Guid="6864c255-3546-467c-83d5-0c09197a1362">
+      <column name="" />
+    </property>
+    <property name="Naissance" type="DateTime" p1:ValidateRequired="true" p1:Guid="c231e014-2feb-418e-914e-ee9ed8f60639">
+      <column name="" />
+    </property>
+    <property name="Adresse" type="String" p1:ValidateRequired="true" p1:Guid="2731020d-4d86-49d7-8973-95ee2785b3e1">
+      <column name="" />
+    </property>
+    <property name="Tel" type="String" p1:ValidateRequired="true" p1:Guid="95045f47-6cea-4a48-8e38-9452e6662b6e">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Agent" entity-set="Agents" p1:Guid="a7f635b1-fcaf-4495-b7ca-c6933b81b1bb">
+    <id name="AgentCIN" type="Int16" p1:ValidateRequired="true" p1:Guid="7ac34a91-99a2-442a-b615-629f54cae4a0">
+      <column name="" />
+    </id>
+    <property name="Non" type="String" p1:ValidateRequired="true" p1:Guid="127457b0-98b9-4871-968a-670df677e30f">
+      <column name="" />
+    </property>
+    <property name="Prenom" type="String" p1:ValidateRequired="true" p1:Guid="58ce4217-de41-4198-81c8-6e0f07b49b9f">
+      <column name="" />
+    </property>
+    <property name="DateEmb" type="DateTime" p1:ValidateRequired="true" p1:Guid="8323d4f6-4ea2-4b95-9fe6-35a1844b6b32">
+      <column name="" />
+    </property>
+    <property name="Adresse" type="String" p1:ValidateRequired="true" p1:Guid="7378e18c-371b-4613-879c-ab85941f14e1">
+      <column name="" />
+    </property>
+    <property name="Salaire" type="Double" p1:ValidateRequired="true" p1:Guid="2504a213-2e99-4047-a4e1-cc6ddce2568b">
+      <column name="" />
+    </property>
+    <property name="Fonction" type="AgentFunction" p1:ValidateRequired="true" p1:Guid="0970faa9-46af-4fdb-86db-8f352c75ab61">
+      <column name="" />
+    </property>
+    <property name="Immatricule" type="String" shadow="True" p1:ValidateRequired="true" p1:Guid="8f0992f8-a4b9-44d8-906d-ba893c702692">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="LoginAgents" entity-set="LoginAgents" p1:Guid="c88b141a-a144-4059-9629-8cfec39320bf">
+    <id name="AgentCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="7423f94c-2f4f-45d5-9184-d749a0394be1">
+      <column name="" not-null="False" />
+    </id>
+    <property name="Password" type="String" p1:ValidateRequired="true" p1:Guid="ccecefa2-f7cc-45bd-b089-6ad62b29bd5b">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Vehicle" entity-set="Vehicles" p1:Guid="2292982b-3ccd-46c0-9948-c2940e056d5e">
+    <id name="Immatricule" type="String" p1:ValidateRequired="true" p1:Guid="a239919b-6a74-42fb-924b-e743358da44f">
+      <column name="" />
+    </id>
+    <property name="Marque" type="String" p1:ValidateRequired="true" p1:Guid="cce7b9d2-09b7-40f2-927e-c0bae97d8be9">
+      <column name="" />
+    </property>
+    <property name="DateCirculation" type="DateTime" p1:ValidateRequired="true" p1:Guid="d6faa1d1-a0b1-4603-a81a-853c50f7007d">
+      <column name="" />
+    </property>
+    <property name="AgentCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="b5c366ea-d13d-493c-bb90-7fd4d34aec70">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="Seances" entity-set="Seances" p1:Guid="748ef606-643d-4413-9d28-e4b1c7756582">
+    <composite-id>
+      <key-property name="DateSeance" type="DateTime" p1:ValidateRequired="true" p1:Guid="876fa73d-1c8b-4c94-be16-2b3f7aa1a32a">
+        <column name="" />
+      </key-property>
+      <key-property name="CandidatCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="44b4c407-5302-439e-9b99-5d78f7edcb7d">
+        <column name="" not-null="False" />
+      </key-property>
+      <key-property name="AgentCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="a3fde960-1694-4457-8371-acfc4331069e">
+        <column name="" not-null="False" />
+      </key-property>
+    </composite-id>
+    <property name="SeanceType" type="SeanceType" p1:ValidateRequired="true" p1:Guid="6a4ddf07-120c-43a8-87c1-004bf04eca60">
+      <column name="" />
+    </property>
+  </class>
+  <class name="Exam" entity-set="Exams" p1:Guid="af62c03f-e1c7-4aee-9de1-bd4bcbc94d15">
+    <id name="Convocation" type="String" p1:ValidateRequired="true" p1:Guid="adfc2c3a-bf32-4b38-99f3-bfd8932e3f1e">
+      <column name="" />
+    </id>
+    <property name="List" type="String" p1:ValidateRequired="true" p1:Guid="300a5173-9c1a-4149-8306-f8fede4c8d0b">
+      <column name="" />
+    </property>
+    <property name="DateExam" type="DateTime" p1:ValidateRequired="true" p1:Guid="88e779b3-64c7-43c1-9fdd-fd61d94393dc">
+      <column name="" />
+    </property>
+    <property name="Type" type="ExamType" p1:ValidateRequired="true" p1:Guid="4689bd63-222f-4456-b33c-e139018db5cf">
+      <column name="" />
+    </property>
+    <property name="CandidatCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="0bb7fdf5-36d6-4faf-a58b-508dc53c02ec">
+      <column name="" not-null="False" />
+    </property>
+  </class>
+  <associations>
+    <association name="Agent_LoginAgents" cardinality="OneToOne" p1:Guid="279da4ef-fd40-484a-a1bb-e7b253ad1248">
+      <end1 multiplicity="One" name="Agent" class="LoginAgents" relation-class="Agent" constrained="True" lazy="False" p1:Guid="50b250c1-09de-4464-acd4-b3bd46d844ab">
+        <property name="AgentCIN" />
+      </end1>
+      <end2 multiplicity="One" name="LoginAgents" class="Agent" relation-class="LoginAgents" constrained="False" lazy="False" p1:Guid="52c3d273-06d4-4340-866c-79b311b44be5">
+        <property name="AgentCIN" />
+      </end2>
+    </association>
+    <association name="Agent_Vehicle" cardinality="OneToMany" p1:Guid="7c51bf43-88e5-467d-8062-1f60f2b9f200">
+      <end1 multiplicity="One" name="Agent" class="Vehicle" relation-class="Agent" constrained="True" lazy="False" p1:Guid="110ea34f-ebc6-419b-b96f-deb42c3f1b13">
+        <property name="AgentCIN" />
+      </end1>
+      <end2 multiplicity="Many" name="Vehicles" class="Agent" relation-class="Vehicle" lazy="False" p1:Guid="5449cde9-d461-45bf-b7a3-eee91406da22">
+        <property name="AgentCIN" />
+      </end2>
+    </association>
+    <association name="Candidat_Seances" cardinality="OneToMany" p1:Guid="9516a4c7-9d91-4454-84ce-ef20dc7fcb2b">
+      <end1 multiplicity="One" name="Candidat" class="Seances" relation-class="Candidat" constrained="True" lazy="False" p1:Guid="ecdbe026-b4b7-409f-bfd6-439fc5416c6d">
+        <property name="CandidatCIN" />
+      </end1>
+      <end2 multiplicity="Many" name="Seances" class="Candidat" relation-class="Seances" lazy="False" p1:Guid="9980164b-b6f2-42f2-8e70-d20813491f88">
+        <property name="CandidatCIN" />
+      </end2>
+    </association>
+    <association name="Agent_Seances" cardinality="OneToMany" p1:Guid="dc7369d9-2182-494a-8382-74da6ae9207c">
+      <end1 multiplicity="One" name="Agent" class="Seances" relation-class="Agent" constrained="True" lazy="False" p1:Guid="ea17fd32-8241-4cf1-af4e-f57724656296">
+        <property name="AgentCIN" />
+      </end1>
+      <end2 multiplicity="Many" name="Seances" class="Agent" relation-class="Seances" lazy="False" p1:Guid="b0120ef5-5822-4df3-980e-cc1bbc71dbef">
+        <property name="AgentCIN" />
+      </end2>
+    </association>
+    <association name="Candidat_Exam" cardinality="OneToMany" p1:Guid="f656a347-5a5d-47c5-aeff-b3cd3654a543">
+      <end1 multiplicity="One" name="Candidat" class="Exam" relation-class="Candidat" constrained="True" lazy="False" p1:Guid="886ebb4a-360b-4e86-bb5b-3463bc5e9ebc">
+        <property name="CandidatCIN" />
+      </end1>
+      <end2 multiplicity="Many" name="Exams" class="Candidat" relation-class="Exam" lazy="False" p1:Guid="c9374570-f206-4aef-81de-508df32cf9f1">
+        <property name="CandidatCIN" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
