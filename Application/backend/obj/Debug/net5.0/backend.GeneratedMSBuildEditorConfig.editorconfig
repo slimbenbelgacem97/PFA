@@ -5,4 +5,4 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = backend
-build_property.ProjectDir = e:\PFA\backend\
+build_property.ProjectDir = e:\PFA\Application\backend\
