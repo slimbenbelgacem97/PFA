@@ -1619,11 +1619,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\PFA\\backend\\backend.csproj",
+      "projectUniqueName": "E:\\PFA\\Application\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "E:\\PFA\\backend\\backend.csproj",
+      "projectPath": "E:\\PFA\\Application\\backend\\backend.csproj",
       "packagesPath": "C:\\Users\\slimb\\.nuget\\packages\\",
-      "outputPath": "E:\\PFA\\backend\\obj\\",
+      "outputPath": "E:\\PFA\\Application\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

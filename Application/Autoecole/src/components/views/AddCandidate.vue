@@ -41,10 +41,8 @@
             </div>
             <button type="submit" class="btn btn-primary" @submit="verify">Ajouter</button>
          </div>
-        <!-- <router-link to="/Login" >log out</router-link>-->
-         <router-view>
-         
-         </router-view>
+  
+        
      </div>
      
    </div>
