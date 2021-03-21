@@ -1,7 +1,7 @@
 <template lang="">
-    <div class="container vert-align" >
+    <div class="container " >
         <Nav/>
-        <div class="card   ">
+        <div class="card  vert-align ">
             <div class="card-body">
                 <div class ="row" >
                     <h4 class="card-title " >{{Agentname + AgentLast}}</h4> <p class="col-4" >   {{state}}</p>
