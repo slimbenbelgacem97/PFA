@@ -1,11 +1,13 @@
-import Vue from "vue";
-import App from '@/App.vue';
-import VueRouter from "vue-router";
-import Home from "@/components/views/Home.vue";
-import Login from '@/components/views/login.vue';
-import AddCandidate from '@/components/views/AddCandidate.vue';
-import AddAgent from '@/components/views/AddAgent.vue';
+import Vue from "vue"
+import App from '@/App.vue'
+import VueRouter from "vue-router"
+import Home from "@/components/views/Home.vue"
+import Login from '@/components/views/login.vue'
+import AddCandidate from '@/components/views/AddCandidate.vue'
+import AddAgent from '@/components/views/AddAgent.vue'
 import ListAgent from '@/components/views/AgentList.vue'
+import AgentDetails from '@/components/views/AgentDetails'
+import SignUp from '@/components/views/SignUp.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -15,13 +17,18 @@ const routes = [
     component: App
   },
   {
-   path: "/home",
-     name: "Home",
-     component: Home
- },
-  
+    path: "/home",
+    name: "Home",
+    component: Home
+  },
   {
-    path: "/Login",
+    path: "/signUp",
+    component: SignUp,
+    name: "SignUp"
+  },
+  // Lonin
+  {
+    path: "/login",
     component: Login,
     name:"Login"
   },
@@ -40,9 +47,13 @@ const routes = [
  {
     path: "/agent/list",
     component: ListAgent,
-    name:"AddAgent"
+    name:"Agent List"
   },
- 
+  {
+    path: "/agent/details",
+    component: AgentDetails,
+    name: "Agent Details"
+  }
 ];
 
 const router = new VueRouter({

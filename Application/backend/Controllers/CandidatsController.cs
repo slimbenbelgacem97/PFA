@@ -7,17 +7,16 @@ using backend.Models;
 
 namespace backend.Controllers
 {
-    public class CandidatsController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CandidatsController : ControllerBase
     {
         private readonly Model context;
         public CandidatsController(Model context)
         {
             this.context = context;
         }
-        [HttpGet("/api/Candidat")]
-        public async  Task< IEnumerable<Candidat>> GetCandidats()
-        {
-            return await context.Candidats.Include(m => m.Seances).ToListAsync();
-        }
+       
+       
     }
 }

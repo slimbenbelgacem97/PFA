@@ -1,18 +1,36 @@
 <template lang="">
-    <div class="container " >
-        <Nav/>
-        <div class="card  vert-align ">
+    
+    <div >
+       <Nav /> 
+        <div class="container card  vert-align my-3 ">
             <div class="card-body">
-                <div class ="row" >
-                    <h4 class="card-title " >{{Agentname + AgentLast}}</h4> <p class="col-4" >   {{state}}</p>
-                    <hr/>
-                </div>
+                <div class ="row pl-4" >
+                    <div class="col=''">
+                        <div class ="row border-bottom  " >
+                            
+                              <h4 class="card-title " >{{Agentname + AgentLast}}</h4>  
+                              <h6 class="px-4 " > {{state}}</h6> 
+                            
+                        </div>
+                    </div>  
+                    
+                 </div> 
                 <div class="card-text">
                     <h6>Fonction: {{AgentFunction}}</h6>
-                    Next seance:{{DateSeance}}  {{ avec(AgentFunction)}} 
+                    Next seance:{{DateSeance}}  {{ avec(AgentFunction)}}    
+                </div>
+                <div class =" row justify-content-end" >
+                <div clas=" pr-5 " style="padding-right:20px" >
+                 <router-link to="/agent/details/">
+                 <b-icon icon="plus-circle" aria-hidden="true"></b-icon> Détailles 
+                 </router-link> 
+                 </div>
                 </div>
             </div>
         </div>
+
+        
+
     </div>
 </template>
 <script>
@@ -23,7 +41,7 @@ export default {
             Agentname:'Abddsatar ',
             AgentLast: 'Akrouti',
             state:'Répos',
-            AgentFunction:'Code',
+            AgentFunction:'Conduite',
             Candidat:'Wassime',
             DateSeance:'22/03/2021',
             vehicle:'Ford 2009',
@@ -31,7 +49,9 @@ export default {
         }
     },
     name:"AgentList",
-    components:Nav,
+    components:{
+        Nav
+    },
     methods: {
         avec(AgentFunction){
             if(AgentFunction=="Conduite")

@@ -4,16 +4,16 @@
     <Connection ConnectionString="" Provider="" />
     <Generation>
       <GeneratedFiles>
-        <File Name="DataModel1.Model.cs" />
-        <File Name="DataModel1.Candidat.cs" />
-        <File Name="DataModel1.Agent.cs" />
-        <File Name="DataModel1.LoginAgents.cs" />
-        <File Name="DataModel1.Vehicle.cs" />
-        <File Name="DataModel1.Seances.cs" />
-        <File Name="DataModel1.Exam.cs" />
-        <File Name="DataModel1.AgentFunction.cs" />
-        <File Name="DataModel1.SeanceType.cs" />
-        <File Name="DataModel1.ExamType.cs" />
+        <File Name="Autoecole.Model.cs" />
+        <File Name="Autoecole.Candidat.cs" />
+        <File Name="Autoecole.Agent.cs" />
+        <File Name="Autoecole.LoginAgents.cs" />
+        <File Name="Autoecole.Vehicle.cs" />
+        <File Name="Autoecole.Seances.cs" />
+        <File Name="Autoecole.Exam.cs" />
+        <File Name="Autoecole.AgentFunction.cs" />
+        <File Name="Autoecole.SeanceType.cs" />
+        <File Name="Autoecole.ExamType.cs" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>

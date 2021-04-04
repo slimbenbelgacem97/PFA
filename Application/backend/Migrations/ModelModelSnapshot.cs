@@ -18,7 +18,7 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Agent", b =>
                 {
-                    b.Property<short>("AgentCIN")
+                    b.Property<int>("AgentCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("AgentCIN");
 
@@ -31,7 +31,7 @@ namespace backend.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("DateEmb");
 
-                    b.Property<int>("Fonction")
+                    b.Property<short>("Fonction")
                         .HasColumnType("INTEGER")
                         .HasColumnName("Fonction");
 
@@ -39,10 +39,10 @@ namespace backend.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Immatricule");
 
-                    b.Property<string>("Non")
+                    b.Property<string>("Nom")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("Non");
+                        .HasColumnName("Nom");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
@@ -60,7 +60,7 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Candidat", b =>
                 {
-                    b.Property<short>("CandidatCIN")
+                    b.Property<int>("CandidatCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("CandidatCIN");
 
@@ -99,7 +99,7 @@ namespace backend.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Convocation");
 
-                    b.Property<short>("CandidatCIN")
+                    b.Property<int>("CandidatCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("CandidatCIN");
 
@@ -125,7 +125,7 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.LoginAgents", b =>
                 {
-                    b.Property<short>("AgentCIN")
+                    b.Property<int>("AgentCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("AgentCIN");
 
@@ -145,11 +145,11 @@ namespace backend.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("DateSeance");
 
-                    b.Property<short>("CandidatCIN")
+                    b.Property<int>("CandidatCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("CandidatCIN");
 
-                    b.Property<short>("AgentCIN")
+                    b.Property<int>("AgentCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("AgentCIN");
 
@@ -172,7 +172,7 @@ namespace backend.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Immatricule");
 
-                    b.Property<short>("AgentCIN")
+                    b.Property<int>("AgentCIN")
                         .HasColumnType("INTEGER")
                         .HasColumnName("AgentCIN");
 

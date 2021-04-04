@@ -2,20 +2,21 @@
 <efcore context-namespace="ModelContext" p1:name="Model" p1:Guid="f6a2f613-f796-418c-9b93-b6fc660d59d1" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
   <class name="$EnumTypes">
     <EnumType Name="AgentFunction" UnderlyingType="Int16" class="AgentFunction" p1:Guid="01ab0ca7-c998-46ff-8613-4f317f74b1e9">
-      <Member Name="AgentCode" p1:Guid="49d7fb16-f2f1-4a1a-920b-d4ecfc5b4764" />
-      <Member Name="AgentConduite" p1:Guid="84451201-2e1a-4244-803b-072eac5e7529" />
+      <Member Name="Directeur" Value="0" p1:Guid="49d7fb16-f2f1-4a1a-920b-d4ecfc5b4764" />
+      <Member Name="AgentConduite" Value="1" p1:Guid="84451201-2e1a-4244-803b-072eac5e7529" />
+      <Member Name="AgentCode" Value="2" p1:Guid="b3786d99-ddc1-4454-bc11-064ea0c38e7a" />
     </EnumType>
     <EnumType Name="SeanceType" class="SeanceType" p1:Guid="f5b98e01-fc06-492d-974d-a21773281b76">
-      <Member Name="SeanceCode" p1:Guid="e89eac9d-6b96-4f14-a30b-9f6920a22f12" />
-      <Member Name="SeanceConduite" p1:Guid="fdb83584-bd81-412b-b530-9d2b6d1fe399" />
+      <Member Name="SeanceCode" Value="0" p1:Guid="e89eac9d-6b96-4f14-a30b-9f6920a22f12" />
+      <Member Name="SeanceConduite" Value="1" p1:Guid="fdb83584-bd81-412b-b530-9d2b6d1fe399" />
     </EnumType>
     <EnumType Name="ExamType" class="ExamType" p1:Guid="cff97f65-bc9e-4d35-a88c-273618e9c9e4">
-      <Member Name="ExamenCode" p1:Guid="049c7d54-132c-4174-a713-90e7d4ca6fae" />
-      <Member Name="ExamenConduite" p1:Guid="3a14f7a1-655b-43c0-82fe-b43dff407743" />
+      <Member Name="ExamenCode" Value="0" p1:Guid="049c7d54-132c-4174-a713-90e7d4ca6fae" />
+      <Member Name="ExamenConduite" Value="1" p1:Guid="3a14f7a1-655b-43c0-82fe-b43dff407743" />
     </EnumType>
   </class>
   <class name="Candidat" entity-set="Candidats" p1:Guid="dca3eca8-2d3a-499e-80cb-78e041d9570f">
-    <id name="CandidatCIN" type="Int16" p1:ValidateRequired="true" p1:Guid="69df4719-7b9d-4aec-8aa0-ef0156f3a370">
+    <id name="CandidatCIN" type="Int32" p1:ValidateRequired="true" p1:Guid="69df4719-7b9d-4aec-8aa0-ef0156f3a370">
       <column name="" />
     </id>
     <property name="Nom" type="String" p1:ValidateRequired="true" p1:Guid="1227b83d-0706-4d0d-9373-4cab50b1cf3c">
@@ -35,10 +36,10 @@
     </property>
   </class>
   <class name="Agent" entity-set="Agents" p1:Guid="a7f635b1-fcaf-4495-b7ca-c6933b81b1bb">
-    <id name="AgentCIN" type="Int16" p1:ValidateRequired="true" p1:Guid="7ac34a91-99a2-442a-b615-629f54cae4a0">
+    <id name="AgentCIN" type="Int32" p1:ValidateRequired="true" p1:Guid="7ac34a91-99a2-442a-b615-629f54cae4a0">
       <column name="" />
     </id>
-    <property name="Non" type="String" p1:ValidateRequired="true" p1:Guid="127457b0-98b9-4871-968a-670df677e30f">
+    <property name="Nom" type="String" p1:ValidateRequired="true" p1:Guid="127457b0-98b9-4871-968a-670df677e30f">
       <column name="" />
     </property>
     <property name="Prenom" type="String" p1:ValidateRequired="true" p1:Guid="58ce4217-de41-4198-81c8-6e0f07b49b9f">
@@ -61,7 +62,7 @@
     </property>
   </class>
   <class name="LoginAgents" entity-set="LoginAgents" p1:Guid="c88b141a-a144-4059-9629-8cfec39320bf">
-    <id name="AgentCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="7423f94c-2f4f-45d5-9184-d749a0394be1">
+    <id name="AgentCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="7423f94c-2f4f-45d5-9184-d749a0394be1">
       <column name="" not-null="False" />
     </id>
     <property name="Password" type="String" p1:ValidateRequired="true" p1:Guid="ccecefa2-f7cc-45bd-b089-6ad62b29bd5b">
@@ -78,7 +79,7 @@
     <property name="DateCirculation" type="DateTime" p1:ValidateRequired="true" p1:Guid="d6faa1d1-a0b1-4603-a81a-853c50f7007d">
       <column name="" />
     </property>
-    <property name="AgentCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="b5c366ea-d13d-493c-bb90-7fd4d34aec70">
+    <property name="AgentCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="b5c366ea-d13d-493c-bb90-7fd4d34aec70">
       <column name="" not-null="False" />
     </property>
   </class>
@@ -87,10 +88,10 @@
       <key-property name="DateSeance" type="DateTime" p1:ValidateRequired="true" p1:Guid="876fa73d-1c8b-4c94-be16-2b3f7aa1a32a">
         <column name="" />
       </key-property>
-      <key-property name="CandidatCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="44b4c407-5302-439e-9b99-5d78f7edcb7d">
+      <key-property name="CandidatCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="44b4c407-5302-439e-9b99-5d78f7edcb7d">
         <column name="" not-null="False" />
       </key-property>
-      <key-property name="AgentCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="a3fde960-1694-4457-8371-acfc4331069e">
+      <key-property name="AgentCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="a3fde960-1694-4457-8371-acfc4331069e">
         <column name="" not-null="False" />
       </key-property>
     </composite-id>
@@ -111,7 +112,7 @@
     <property name="Type" type="ExamType" p1:ValidateRequired="true" p1:Guid="4689bd63-222f-4456-b33c-e139018db5cf">
       <column name="" />
     </property>
-    <property name="CandidatCIN" type="Int16" shadow="True" p1:ValidateRequired="true" p1:Guid="0bb7fdf5-36d6-4faf-a58b-508dc53c02ec">
+    <property name="CandidatCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="0bb7fdf5-36d6-4faf-a58b-508dc53c02ec">
       <column name="" not-null="False" />
     </property>
   </class>

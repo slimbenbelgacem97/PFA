@@ -174,3 +174,5 @@ E:\PFA\Application\backend\obj\Debug\net5.0\backend.dll
 E:\PFA\Application\backend\obj\Debug\net5.0\ref\backend.dll
 E:\PFA\Application\backend\obj\Debug\net5.0\backend.pdb
 E:\PFA\Application\backend\obj\Debug\net5.0\backend.genruntimeconfig.cache
+E:\PFA\Application\backend\bin\Debug\net5.0\AutoMapper.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
