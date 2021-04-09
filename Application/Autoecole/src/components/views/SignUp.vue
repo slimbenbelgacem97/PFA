@@ -78,16 +78,43 @@
             />
             <small id="helpId" class="form-text text-muted"
               >Le mot de passe doit:<br />
-              <b-icon icon="check" scale="2" variant="success"></b-icon>
+              <b-icon
+                v-if="user.password.length >= 8"
+                icon="check"
+                scale="2"
+                variant="success"
+              />
+              <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
               Contenir au moins 8 caractères. <br />
-              <b-icon icon="check" scale="2" variant="success"></b-icon>
+              <b-icon
+                v-if="user.password ? /[A-Z]/.test(user.password) : false"
+                icon="check"
+                scale="2"
+                variant="success"
+              />
+              <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
               Lettre MJUSCULE <br />
-              <b-icon icon="check" scale="2" variant="success"></b-icon>
+              <b-icon
+                v-if="user.password ? /[0-9]/.test(user.password) : false"
+                icon="check"
+                scale="2"
+                variant="success"
+              />
+              <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
+              Nembre<br />
+              <b-icon
+                v-if="
+                  user.password ? /[-!$%^&*()_+|~=`\{\}\[\]:\/;<>?,.@#]/.test(user.password) : false "
+                icon="check"
+                scale="2"
+                variant="success"
+              ></b-icon>
+              <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
               Un caractère spéciale. <br />
             </small>
           </div>
 
-          <button type="submit" class="btn btn-primary">S'inscrir</button>
+          <button type="submit" :disabled="!((user.password ? /[A-Z]/.test(user.password): false)&&(user.password ? /[0-9]/.test(user.password) : false)&& (user.password ? /[-!$%^&*()_+|~=`\{\}\[\]:\/;<>?,.@#]/.test(user.password) : false) && user.password.length >= 8) " class="btn btn-primary">S'inscrir</button>
         </form>
       </div>
     </div>
@@ -104,8 +131,8 @@ export default {
         tel: "",
         adresse: "",
         usermane: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
@@ -119,10 +146,11 @@ export default {
         tel: this.user.tel,
         adresse: this.user.adresse,
         username: this.user.usermane,
-        password: this.user.password,
+        password: this.user.password
       };
       alert(JSON.stringify(obj));
-    },
-  },
+    }
+  }
 };
+
 </script>

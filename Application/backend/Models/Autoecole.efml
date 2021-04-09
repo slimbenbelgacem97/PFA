@@ -118,18 +118,18 @@
   </class>
   <associations>
     <association name="Agent_LoginAgents" cardinality="OneToOne" p1:Guid="279da4ef-fd40-484a-a1bb-e7b253ad1248">
-      <end1 multiplicity="One" name="Agent" class="LoginAgents" relation-class="Agent" constrained="True" lazy="False" p1:Guid="50b250c1-09de-4464-acd4-b3bd46d844ab">
+      <end1 multiplicity="One" name="Agent" class="LoginAgents" relation-class="Agent" constrained="True" lazy="False" p1:inheritance-modifier="None" p1:Guid="50b250c1-09de-4464-acd4-b3bd46d844ab">
         <property name="AgentCIN" />
       </end1>
-      <end2 multiplicity="One" name="LoginAgents" class="Agent" relation-class="LoginAgents" constrained="False" lazy="False" p1:Guid="52c3d273-06d4-4340-866c-79b311b44be5">
+      <end2 multiplicity="One" name="LoginAgent" class="Agent" relation-class="LoginAgents" constrained="False" lazy="False" p1:inheritance-modifier="None" p1:Guid="52c3d273-06d4-4340-866c-79b311b44be5">
         <property name="AgentCIN" />
       </end2>
     </association>
-    <association name="Agent_Vehicle" cardinality="OneToMany" p1:Guid="7c51bf43-88e5-467d-8062-1f60f2b9f200">
-      <end1 multiplicity="One" name="Agent" class="Vehicle" relation-class="Agent" constrained="True" lazy="False" p1:Guid="110ea34f-ebc6-419b-b96f-deb42c3f1b13">
+    <association name="Agent_Vehicle" cardinality="OneToOne" p1:Guid="7c51bf43-88e5-467d-8062-1f60f2b9f200">
+      <end1 multiplicity="One" name="Agent" class="Vehicle" relation-class="Agent" constrained="True" lazy="False" p1:inheritance-modifier="None" p1:Guid="110ea34f-ebc6-419b-b96f-deb42c3f1b13">
         <property name="AgentCIN" />
       </end1>
-      <end2 multiplicity="Many" name="Vehicles" class="Agent" relation-class="Vehicle" lazy="False" p1:Guid="5449cde9-d461-45bf-b7a3-eee91406da22">
+      <end2 multiplicity="One" name="Vehicle" class="Agent" relation-class="Vehicle" constrained="False" lazy="False" p1:inheritance-modifier="None" p1:Guid="5449cde9-d461-45bf-b7a3-eee91406da22">
         <property name="AgentCIN" />
       </end2>
     </association>
