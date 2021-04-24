@@ -6,6 +6,7 @@ namespace backend.Repositries
     {
         public IEnumerable<Agent> GetAllAgents();
        public Agent GetAgentById(int agentId);
+        public Agent GetDetailsAgentById(int AgentId);
 
     }
 }

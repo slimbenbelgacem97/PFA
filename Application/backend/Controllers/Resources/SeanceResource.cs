@@ -9,8 +9,6 @@ namespace backend.Controllers.Resources
 
         public SeanceType SeanceType { get; set; }
 
-        public Candidat Candidat { get; set; }
-
-        public  Agent Agent { get; set; }
+        
     }
 }

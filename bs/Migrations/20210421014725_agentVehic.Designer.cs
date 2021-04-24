@@ -2,19 +2,36 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Data;
 
 namespace backend.Migrations
 {
     [DbContext(typeof(Model))]
-    partial class ModelModelSnapshot : ModelSnapshot
+    [Migration("20210421014725_agentVehic")]
+    partial class agentVehic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2");
+
+            modelBuilder.Entity("Agents_Vehiciles", b =>
+                {
+                    b.Property<int>("AgentCIN")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Immatricule")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AgentCIN", "Immatricule");
+
+                    b.HasIndex("Immatricule");
+
+                    b.ToTable("Agents_Vehiciles");
+                });
 
             modelBuilder.Entity("backend.Models.Agent", b =>
                 {
@@ -34,10 +51,6 @@ namespace backend.Migrations
                     b.Property<short>("Fonction")
                         .HasColumnType("INTEGER")
                         .HasColumnName("Fonction");
-
-                    b.Property<string>("Immatricule")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Immatricule");
 
                     b.Property<string>("Nom")
                         .IsRequired()
@@ -172,10 +185,6 @@ namespace backend.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Immatricule");
 
-                    b.Property<int>("AgentCIN")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("AgentCIN");
-
                     b.Property<DateTime>("DateCirculation")
                         .HasColumnType("TEXT")
                         .HasColumnName("DateCirculation");
@@ -187,10 +196,22 @@ namespace backend.Migrations
 
                     b.HasKey("Immatricule");
 
-                    b.HasIndex("AgentCIN")
-                        .IsUnique();
-
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("Agents_Vehiciles", b =>
+                {
+                    b.HasOne("backend.Models.Agent", null)
+                        .WithMany()
+                        .HasForeignKey("AgentCIN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Models.Vehicle", null)
+                        .WithMany()
+                        .HasForeignKey("Immatricule")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("backend.Models.Exam", b =>
@@ -234,24 +255,11 @@ namespace backend.Migrations
                     b.Navigation("Candidat");
                 });
 
-            modelBuilder.Entity("backend.Models.Vehicle", b =>
-                {
-                    b.HasOne("backend.Models.Agent", "Agent")
-                        .WithOne("Vehicle")
-                        .HasForeignKey("backend.Models.Vehicle", "AgentCIN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Agent");
-                });
-
             modelBuilder.Entity("backend.Models.Agent", b =>
                 {
                     b.Navigation("LoginAgent");
 
                     b.Navigation("Seances");
-
-                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("backend.Models.Candidat", b =>

@@ -25,7 +25,7 @@ namespace backend.Controllers
         {
             try
             {
-                var candidats = context.Candidat.GetAllCandidats();
+                var candidats = context.Candidate.GetAllCandidats();
                 loggerManager.LogInfo($"Returned all Candidates from database.");
                 var candidatsResult = mapper.Map<IEnumerable<CandidatResource>>(candidats);
                 return Ok(candidatsResult);
@@ -37,12 +37,12 @@ namespace backend.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
-        [HttpGet("{id?}")]
+        [HttpGet("{id}")]
         public IActionResult GetCandidat(int id)
         {
             try
             {
-                var candidat = context.Candidat.GetCandidatById(id);
+                var candidat = context.Candidate.GetCandidatById(id);
                 if (candidat == null)
                 {
                     loggerManager.LogError($"Candidate with id: {id}, hasn't been found in db.");
@@ -61,35 +61,45 @@ namespace backend.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
-          public IActionResult GetAgent(int id)
+
+        [HttpGet("{id}/details")]
+        public IActionResult GetCandidatDetails(int id)
         {
             try
             {
-                var agent = context.Agent.GetAgentById(id);
-                if(agent ==null){
-                    loggerManager.LogError($"Agent with id: {id}, hasn't been found in db.");
-                    return NotFound();
-                }else
+                var candidat = context.Candidate.GetCandidatById(id);
+                var seance = context.Seance.GetSeancesByCandidateId(id);
+                if (candidat == null)
                 {
-                    loggerManager.LogInfo($" Get agent (ID: {agent.AgentCIN})");
-                    var agentResult = mapper.Map<AgentResource>(agent);
-                    return Ok(agentResult);
+                    loggerManager.LogError($"Candidate with id: {id}, hasn't been found in db.");
+                    return NotFound();
+                }
+                else
+                {
+                   
+                    var candidatResource = mapper.Map<CandidatResource>(candidat);
+                    loggerManager.LogInfo($" Get agent (ID: {candidat.CandidatCIN})");
+                    var seances = mapper.Map<SeanceResource>(seance);
+                    loggerManager.LogInfo($"Returned all the seances of Cadidate[ID: {id}]");
+                    return Ok(new{candidatResource,seances});
                 }
             }
             catch (Exception ex)
             {
-                loggerManager.LogError($"Something went wrong while Geting  agent  :{ex.Message}");
+                loggerManager.LogError($"Something went wrong while Geting  candidate  :{ex.Message}");
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
         [HttpPost]
-        public ActionResult CreateCandidate(Candidat candidat)
+        public ActionResult CreateCandidate(Candidate candidat)
         {
             try
             {
-                context.Candidat.Create(candidat);
+                context.Candidate.Create(candidat);
                 loggerManager.LogInfo($"New Candidate with ID: {candidat.CandidatCIN}, Name: {candidat.Nom} has been added.");
                 var candidatResult = mapper.Map<CandidatResource>(candidat);
+                context.Save();
                 return Ok(candidatResult);
             }
             catch (Exception ex)
@@ -98,7 +108,6 @@ namespace backend.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        //update
-        //delete
+        
     }
 }

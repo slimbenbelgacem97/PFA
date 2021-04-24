@@ -3,10 +3,11 @@ namespace backend.Repositries
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private Model context;
+        private ModelContextV2 context;
         private IAgentRepository agentRepository;
         private ICandidatRepository candidatRepository;
         private ISeanceRepository seanceRepository;
+        private IVehiculeRepository vehiculeRepository;
         public IAgentRepository Agent
         {
             get
@@ -19,7 +20,7 @@ namespace backend.Repositries
             }
             set { }
         }
-        public ICandidatRepository Candidat
+        public ICandidatRepository Candidate
         {
             get
             {
@@ -43,7 +44,22 @@ namespace backend.Repositries
             }
             set { }
         }
-        public RepositoryWrapper(Model context)
+        public IVehiculeRepository Vehicule
+        {
+            get
+            {
+                if (vehiculeRepository == null)
+                {
+                    vehiculeRepository = new VehiculeRepository(context);
+                }
+                return vehiculeRepository;
+            }
+            set { }
+        }
+
+        
+
+        public RepositoryWrapper(ModelContextV2 context)
         {
             this.context = context;
         }

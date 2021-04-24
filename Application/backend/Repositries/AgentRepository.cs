@@ -1,13 +1,13 @@
 using backend.Models;
 using backend.Data;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Linq.Expressions;
 namespace backend.Repositries
 {
     public class AgentRepository : RepositryBase<Agent>, IAgentRepository
     {
-        public AgentRepository(Model context)
+        public AgentRepository(ModelContextV2 context)
         : base(context)
         {
 
@@ -15,7 +15,7 @@ namespace backend.Repositries
         public IEnumerable<Agent> GetAllAgents()
         {
             return FindAll()
-                    .OrderBy(a => a.Nom)
+                    .OrderBy(a => a.DateEmb)
                     .ToList();
         }
         public void CreateAgent(Agent agent)
@@ -24,9 +24,17 @@ namespace backend.Repositries
         }
        public Agent GetAgentById(int agentId)
         {
-            return FindByCondition(agent => agent.AgentCIN== agentId)
+            return FindByCondition(agent => agent.AgentId == agentId)
                 .FirstOrDefault();
         }
-
+        public Agent GetDetailsAgentById(int agentId)
+        {
+            return FindByCondition(a => a.AgentId == agentId)
+            .Include(a =>a.Seances)
+            .Include(a => a.Vehicules)
+            .ThenInclude(av => av.Vehicule)
+            .AsSplitQuery()
+            .FirstOrDefault();
+        }
     }
 }

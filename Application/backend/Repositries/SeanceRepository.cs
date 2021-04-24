@@ -5,26 +5,35 @@ using backend.Models;
 using backend.Data;
 namespace backend.Repositries
 {
-    public class SeanceRepository : RepositryBase<Seances>, ISeanceRepository
+    public class SeanceRepository : RepositryBase<Seance>, ISeanceRepository
     {
-        public SeanceRepository(Model context)
+        public SeanceRepository(ModelContextV2 context)
         : base(context)
         {
 
         }
-        public IEnumerable<Seances> GetSeances()
+        public IEnumerable<Seance> GetSeances()
         {
             return FindAll()
                 .OrderBy(sc => sc.DateSeance)
                 .ToList();
         }
-        public  Seances GetSeancesByType(SeanceType seanceType)
+        public Seance GetSeancesByType(SeanceType seanceType)
         {
             return FindByCondition(sc => sc.SeanceType.Equals(seanceType))
-                .Include(a => a.Agent)
-                .FirstOrDefault();
+                    .FirstOrDefault();
 
 
+        }
+        public Seance GetSeancesByAgentId(int id)
+        {
+            return FindByCondition(sc => sc.Agent.AgentId == id)
+                    .FirstOrDefault();
+        }
+        public Seance GetSeancesByCandidateId(int id)
+        {
+            return FindByCondition(sc => sc.Candidate.CandidatCIN == id)
+                    .FirstOrDefault();
         }
     }
 }

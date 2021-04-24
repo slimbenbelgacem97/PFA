@@ -28,10 +28,10 @@ namespace backend.Controllers
         {
             try
             {
-                var sceance = context.Seance.GetSeances();
+                var seance = context.Seance.GetSeances();
                 loggerManager.LogInfo($"Returned all Scenaces from database.");
-                var sceanceResult = mapper.Map<IEnumerable<SeanceResource>>(sceance);
-                return Ok(sceanceResult);
+                var seanceResult = mapper.Map<IEnumerable<SeanceResource>>(seance);
+                return Ok(seanceResult);
             }
             catch (Exception ex)
             {
@@ -40,15 +40,16 @@ namespace backend.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("type/{type}")]
         public IActionResult GetSeancesByType(SeanceType seanceType)
         {
             try
             {
-                var sceances = context.Seance.GetSeancesByType(seanceType);
-                loggerManager.LogInfo($"Returned All seances (type : {sceances.SeanceType})");
-                var sceanceResult = mapper.Map<SeanceResource>(sceances);
-                return Ok(sceanceResult);
+                var seances = context.Seance.GetSeancesByType(seanceType);
+                loggerManager.LogInfo($"Returned All seances (type : {seances.SeanceType}");
+                var seanceResult = mapper.Map<SeanceResource>(seances);
+                // var agent = context.Agent.FindByCondition(agent => agent.AgentCIN == 0);
+                return Ok(seanceResult);
             }
             catch (Exception ex)
             {
@@ -57,5 +58,6 @@ namespace backend.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
     }
 }

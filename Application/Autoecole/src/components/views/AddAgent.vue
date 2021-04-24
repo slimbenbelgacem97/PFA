@@ -5,7 +5,7 @@
     <div class="card text">
       <div class="card-body">
         <h4 class="card-title">Ajouter un Agent</h4>
-        <b-form>
+        <b-form  @submit="c" method="post">
           <div class="form-group">
             <label for="">Nom: *</label>
             <input
@@ -70,7 +70,7 @@
               required
             />
           </div>
-          <button type="submit" class="btn btn-primary" @submit="create">
+          <button type="submit" class="btn btn-primary">
             Ajouter
           </button>
         </b-form>
@@ -80,7 +80,7 @@
 </template>
 <script>
 import Nav from "@/components/views/Nav.vue";
-//import AgentService from "@/api-services/agent.service.js"
+
 
 export default {
   data() {
@@ -92,27 +92,16 @@ export default {
         dateEnm: "",
         adresse: "",
         tel: "",
+        fonction: null
       },
     };
   },
   name: "AddAgent",
   components: Nav,
   methods: {
-    create() {
-      alert(JSON.stringify(this.agent));
-      //this.axios.po
-    },
-  },
-  mounted() {
-    this.$http
-      .get({url:'https://jsonplaceholder.typicode.com/posts',"rejectUnauthorized": false})
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error(err.toJSON());
-      });
-  },
+   
+  }
+  
 };
 </script>
 <style lang=""></style>

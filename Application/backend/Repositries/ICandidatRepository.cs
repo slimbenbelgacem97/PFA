@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using backend.Models;
 namespace backend.Repositries
 {
-    public interface ICandidatRepository : IRepositryBase<Candidat>
+    public interface ICandidatRepository : IRepositryBase<Candidate>
     {
-        public IEnumerable<Candidat> GetAllCandidats();
-        public Candidat GetCandidatById(int id);
+        public IEnumerable<Candidate> GetAllCandidats();
+        public Candidate GetCandidatById(int id);
     }
 }

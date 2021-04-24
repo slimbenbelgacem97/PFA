@@ -11,13 +11,13 @@
           ></b-icon>
           Seul le directeur de l'autoécole s'inscrire
         </h5>
-        <form @submit.prevent="verify">
+        <form @submit.prevent="verify" method="post">
           <div class="form-group">
             <label for="">Nom: *</label>
             <input
               type="text"
               class="form-control"
-              v-model="user.nom"
+              v-model="agent.nom"
               required
             />
           </div>
@@ -27,7 +27,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="user.prenom"
+              v-model="agent.prenom"
               required
             />
           </div>
@@ -37,7 +37,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="user.usermane"
+              v-model="agent.agentcin"
               placeholder="N° C.I.N"
               required
             />
@@ -51,7 +51,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="user.tel"
+              v-model="agent.tel"
               placeholder="66558844"
               required
             />
@@ -61,25 +61,25 @@
             <label for="">Adresse:*</label>
             <textarea
               class="form-control"
-              v-model="user.adresse"
+              v-model="agent.adresse"
               rows="2"
               placeholder="Rue - Ville -Code postal"
               required
             ></textarea>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="">Mot de passe: * </label>
             <input
               type="password"
               class="form-control"
-              v-model="user.password"
+              v-model="logininfo.password"
               placeholder="********"
             />
             <small id="helpId" class="form-text text-muted"
               >Le mot de passe doit:<br />
               <b-icon
-                v-if="user.password.length >= 8"
+                v-if="logininfo.password.length >= 8"
                 icon="check"
                 scale="2"
                 variant="success"
@@ -87,7 +87,7 @@
               <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
               Contenir au moins 8 caractères. <br />
               <b-icon
-                v-if="user.password ? /[A-Z]/.test(user.password) : false"
+                v-if="logininfo.password ? /[A-Z]/.test(logininfo.password) : false"
                 icon="check"
                 scale="2"
                 variant="success"
@@ -95,7 +95,7 @@
               <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
               Lettre MJUSCULE <br />
               <b-icon
-                v-if="user.password ? /[0-9]/.test(user.password) : false"
+                v-if="logininfo.password ? /[0-9]/.test(logininfo.password) : false"
                 icon="check"
                 scale="2"
                 variant="success"
@@ -104,7 +104,12 @@
               Nembre<br />
               <b-icon
                 v-if="
-                  user.password ? /[-!$%^&*()_+|~=`\{\}\[\]:\/;<>?,.@#]/.test(user.password) : false "
+                  logininfo.password
+                    ? /[-!$%^&*()_+|~=`\{\}\[\]:\/;<>?,.@#]/.test(
+                        logininfo.password
+                      )
+                    : false
+                "
                 icon="check"
                 scale="2"
                 variant="success"
@@ -112,9 +117,21 @@
               <b-icon v-else icon="exclamation-circle-fill" variant="danger" />
               Un caractère spéciale. <br />
             </small>
-          </div>
+          </div> -->
 
-          <button type="submit" :disabled="!((user.password ? /[A-Z]/.test(user.password): false)&&(user.password ? /[0-9]/.test(user.password) : false)&& (user.password ? /[-!$%^&*()_+|~=`\{\}\[\]:\/;<>?,.@#]/.test(user.password) : false) && user.password.length >= 8) " class="btn btn-primary">S'inscrir</button>
+          <button type="submit" class="btn btn-primary">
+            S'inscrir
+          </button>
+          <!-- :disabled="
+              !(
+                (logininfo.password ? /[A-Z]/.test(logininfo.password) : false) &&
+                (logininfo.password ? /[0-9]/.test(logininfo.password) : false) &&
+                (logininfo.password
+                  ? /[-!$%^&*()_+|~=`\{\}\[\]:\/;<>?,.@#]/.test(logininfo.password)
+                  : false) &&
+                logininfo.password.length >= 8
+              )
+            " -->
         </form>
       </div>
     </div>
@@ -125,32 +142,41 @@ export default {
   name: "SignUP",
   data() {
     return {
-      user: {
+      agent: {
+        agentcin: "",
         nom: "",
         prenom: "",
         tel: "",
         adresse: "",
-        usermane: "",
-        password: ""
-      }
+
+        function: 2,
+        dateEmb: new Date(),
+        salire: 50000,
+      },
+      // logininfo:{
+      //   usermane: this.agent.agentcin,
+      //   password: "",
+      // }
     };
   },
   methods: {
     verify() {
-      alert(JSON.stringify(this.user));
+      this.axios({
+        method: "post",
+        
+           headers: {'X-Custom-Header': 'foobar',
+           'ccess-Control-Allow-Origin' :'*'
+           },
+        url: "https://localhost:5001/api/agent/add",
+        data: this.agent,
+      })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    v() {
-      let obj = {
-        nom: this.user.nom,
-        prenom: this.user.prenom,
-        tel: this.user.tel,
-        adresse: this.user.adresse,
-        username: this.user.usermane,
-        password: this.user.password
-      };
-      alert(JSON.stringify(obj));
-    }
-  }
+  },
 };
-
 </script>

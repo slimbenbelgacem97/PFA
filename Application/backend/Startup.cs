@@ -12,9 +12,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using NLog;
+using backend.Models;
 using backend.Data;
 using backend.Repositries;
 using backend.Logging;
+// using backend.Models;
+// using backend.Repositries;
+// using backend.Logging;
 namespace backend
 {
     public class Startup
@@ -26,42 +30,45 @@ namespace backend
         {
             LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "\\log.config"));
             Configuration = configuration;
- 
+
             Environment = env;
         }
-        
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddAutoMapper(typeof(Startup));
             services.AddSpaStaticFiles(configuration: options => { options.RootPath = "wwwroot"; });
-            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            services.AddSingleton<ILoggerManager, LoggerManager>(); // to exttract to an other class (ServicesExeteiions)
+             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+             services.AddSingleton<ILoggerManager, LoggerManager>(); // to exttract to an other class (ServicesExeteiions)
             services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddPolicy("VueCorsPolicy", builder =>
                 {
                     builder
+                    .AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .WithOrigins("https://localhost:5001");
+                    .AllowAnyMethod();
+                    //.AllowCredentials();
+                    // .WithOrigins("https://localhost:5001","https://localhost:8081");
                 });
             });
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0)
+                    .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             if (Environment.IsDevelopment())
             {
-                services.AddDbContext<Model>(options => options.UseSqlite(Configuration.GetConnectionString("Default")));
+                services.AddDbContext<ModelContextV2>(options => options.UseSqlite(Configuration.GetConnectionString("Default")));
             }
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, Model dbContext)
+        public void Configure(IApplicationBuilder app, ModelContextV2 dbContext)
         {
             if (Environment.IsDevelopment())
             {
@@ -88,7 +95,7 @@ namespace backend
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern : "{controller}/{action}/{id?}"
+                    pattern: "{controller}/{action}/{id?}"
                 );
             });
             app.UseDefaultFiles();

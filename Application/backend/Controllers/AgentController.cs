@@ -10,21 +10,19 @@ namespace backend.Controllers
 {
     [ApiController]
     [Route("api/agent")]
-    public class AgentController:ControllerBase
+    public class AgentController : ControllerBase
     {
         private ILoggerManager loggerManager;
         private IMapper mapper;
         private readonly IRepositoryWrapper context;
-        public AgentController(IRepositoryWrapper context, IMapper mapper,ILoggerManager loggerManager)
+        public AgentController(IRepositoryWrapper context, IMapper mapper, ILoggerManager loggerManager)
         {
             this.context = context;
             this.mapper = mapper;
             this.loggerManager = loggerManager;
         }
 
-        
-        [HttpGet]    
-        
+        [HttpGet]
         public IActionResult GetAllAgents()
         {
             try
@@ -37,75 +35,108 @@ namespace backend.Controllers
             catch (Exception ex)
             {
 
-                loggerManager.LogError($"Something went wrong while Geting All Agents:{ex.Message}");
+                loggerManager.LogError($"Something went wrong while Geting All Agents:{ex.StackTrace}");
                 return StatusCode(500, "Internal Server Error");
             }
         }
         [HttpGet("{id?}")]
         public IActionResult GetAgent(int id)
         {
+           
             try
             {
-                var agent = context.Agent.GetAgentById(id);
-                if(agent ==null){
+                var agent = context.Agent.GetAgentById((int)id);
+                if (agent == null)
+                {
                     loggerManager.LogError($"Agent with id: {id}, hasn't been found in db.");
                     return NotFound();
-                }else
+                }
+                else
                 {
-                    loggerManager.LogInfo($" Get agent (ID: {agent.AgentCIN})");
+                    loggerManager.LogInfo($"Get agent (ID: {agent.AgentId})");
                     var agentResult = mapper.Map<AgentResource>(agent);
                     return Ok(agentResult);
                 }
             }
             catch (Exception ex)
             {
-                loggerManager.LogError($"Something went wrong while Geting  agent  :{ex.Message}");
+                loggerManager.LogError($"Something went wrong while Geting  agent  :{ex.StackTrace}");
                 return StatusCode(500, "Internal Server Error");
             }
         }
-        [HttpPost("/add")]
-        public ActionResult CreateAgent(Agent agent)
+        
+        [HttpGet("details/{id?}")]
+        public IActionResult GetAgentDetails(int id)
+        {
+            try
+            {
+
+                var agent = context.Agent.GetDetailsAgentById(id);  
+                if (agent == null)
+                {
+                    loggerManager.LogError($"Agent with id: {id}, hasn't been found in db.");
+                    return NotFound();
+                }
+                else
+                {
+                    var agentResult = mapper.Map<AgentResource>(agent);
+                    loggerManager.LogInfo($"Get agent (ID: {agent.AgentId})");
+                    var sc = mapper.Map<ICollection<Seance>, ICollection<SeanceResource>>(agent.Seances);
+                    loggerManager.LogInfo($"Returned All seances of the agent [ID:{id}]");
+                    var vehicules = mapper.Map<ICollection<Agent_VehiculeResource>>(agent.Vehicules);
+                    loggerManager.LogInfo($"Returned the vehicule of the agent [ID:{id}]");
+                    return Ok(new { agentResult, sc, vehicules });
+                }
+            }
+            catch (Exception ex)
+            {
+                loggerManager.LogError($"Something went wrong while Geting  agent  :{ex.StackTrace}");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+       [HttpPost("add")]
+        public ActionResult AddAgent(Agent agent)
         {
             try
             {
                 context.Agent.Create(agent);
-                loggerManager.LogInfo($"New Agent with ID: {agent.AgentCIN}, Name: {agent.Nom} has been added.");
+                loggerManager.LogInfo($"New Agent with ID: {agent.AgentId}, Name: {agent.Nom} has been added.");
                 var agentResult = mapper.Map<AgentResource>(agent);
+                context.Save();
                 return Ok(agentResult);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 loggerManager.LogError($"Something went wrong while adding new (creating) Agent : {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
-        } 
-        [Route("/update")]
-        [HttpPost("/{id}")]
-        public IActionResult UpdateAgent(int id, Agent agent)
+        }
+
+        [HttpPost("update/{id?}")]
+        public IActionResult UpdateAgent(Agent updatedAgent)
         {
-            
             try
             {
-               
-                context.Agent.Update(agent);
-                loggerManager.LogInfo($"Agent{agent.AgentCIN} has been updated.");
-                return Ok(agent);
+                var agent = context.Agent.GetAgentById(updatedAgent.AgentId);
+                if (agent == null)
+                {
+                    loggerManager.LogError($"Agent [ ID: {updatedAgent.AgentId}], hasn't been found in db.");
+                    return NotFound();
+                }
+                else
+                {
+                    context.Agent.Update(updatedAgent);
+                    context.Save();
+                    loggerManager.LogInfo($"Agent [ID:{updatedAgent.AgentId}] has been updated.");
+                    return Ok(updatedAgent);
+                }
             }
             catch (Exception ex)
             {
-                loggerManager.LogError($"Something went wrong while  updating Agent   : {ex.Message}");
-                return StatusCode(500, "Internal server error");
+                loggerManager.LogError($"Something went wrong while updating  agent  :{ex.Message}");
+                return StatusCode(500, "Internal Server Error");
             }
-        }
-
-        [HttpGet("/test/logging")]
-        public IEnumerable<string> Get()
-        {
-            loggerManager.LogInfo("Here is info message from the controller.");
-            loggerManager.LogDebug("Here is debug message from the controller.");
-            loggerManager.LogWarn("Here is warn message from the controller.");
-            loggerManager.LogError("Here is error message from the controller.");
-            return new string[] { "value1", "value2" };
         }
 
     }

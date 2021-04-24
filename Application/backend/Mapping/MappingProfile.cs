@@ -7,9 +7,12 @@ namespace backend.Mapping
     {
         public MappingProfile()
         {
+            CreateMap<Vehicule, VehicleResource>();
             CreateMap<Agent, AgentResource>();
-            CreateMap<Candidat, CandidatResource>();
-            CreateMap<Seances, SeanceResource>();
+            CreateMap<Candidate, CandidatResource>();
+            CreateMap<Seance, SeanceResource>();
+            CreateMap<Agent_Vehicule, Agent_VehiculeResource>();
+
 
         }
     }

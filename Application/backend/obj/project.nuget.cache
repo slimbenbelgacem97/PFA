@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "p/eJnkpJIFmd3DIuvuIsYHwpwDTp8g7pU+QdODdZISxTN5U6FyBBvCufzK79KrDLpw2CKlh4HkMtG1slBC+Ykg==",
+  "dgSpecHash": "Q5xb1GEJZrEJuYXaJKovwhmg/23LHi2o6Fr1SBYWf4Sqcv7882jgHfkaajC8HDMfHc/6A2WuG/sMrwt/cwrHUg==",
   "success": true,
   "projectFilePath": "E:\\PFA\\Application\\backend\\backend.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\slimb\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.2\\microsoft.aspnetcore.authentication.jwtbearer.5.0.2.nupkg.sha512",
+    "C:\\Users\\slimb\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.5\\microsoft.aspnetcore.jsonpatch.5.0.5.nupkg.sha512",
+    "C:\\Users\\slimb\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.5\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.5.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\5.0.1\\microsoft.aspnetcore.spaservices.extensions.5.0.1.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.0-preview.2.21154.2\\microsoft.data.sqlite.core.6.0.0-preview.2.21154.2.nupkg.sha512",
@@ -38,6 +40,8 @@
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.7.1\\microsoft.identitymodel.protocols.6.7.1.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.7.1\\microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.7.1\\microsoft.identitymodel.tokens.6.7.1.nupkg.sha512",
+    "C:\\Users\\slimb\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\slimb\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\nlog\\4.7.9\\nlog.4.7.9.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\nlog.extensions.logging\\1.7.2\\nlog.extensions.logging.1.7.2.nupkg.sha512",
     "C:\\Users\\slimb\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.5-pre20210119130047\\sqlitepclraw.bundle_e_sqlite3.2.0.5-pre20210119130047.nupkg.sha512",

@@ -21,7 +21,7 @@
                 </div>
                 <div class =" row justify-content-end" >
                 <div clas=" pr-5 " style="padding-right:20px" >
-                 <router-link to="/agent/details/">
+                 <router-link to="#">
                  <b-icon icon="plus-circle" aria-hidden="true"></b-icon> Détailles 
                  </router-link> 
                  </div>

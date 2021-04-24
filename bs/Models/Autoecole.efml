@@ -57,9 +57,6 @@
     <property name="Fonction" type="AgentFunction" p1:ValidateRequired="true" p1:Guid="0970faa9-46af-4fdb-86db-8f352c75ab61">
       <column name="" />
     </property>
-    <property name="Immatricule" type="String" shadow="True" p1:ValidateRequired="true" p1:Guid="8f0992f8-a4b9-44d8-906d-ba893c702692">
-      <column name="" not-null="False" />
-    </property>
   </class>
   <class name="LoginAgents" entity-set="LoginAgents" p1:Guid="c88b141a-a144-4059-9629-8cfec39320bf">
     <id name="AgentCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="7423f94c-2f4f-45d5-9184-d749a0394be1">
@@ -78,9 +75,6 @@
     </property>
     <property name="DateCirculation" type="DateTime" p1:ValidateRequired="true" p1:Guid="d6faa1d1-a0b1-4603-a81a-853c50f7007d">
       <column name="" />
-    </property>
-    <property name="AgentCIN" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="b5c366ea-d13d-493c-bb90-7fd4d34aec70">
-      <column name="" not-null="False" />
     </property>
   </class>
   <class name="Seances" entity-set="Seances" p1:Guid="748ef606-643d-4413-9d28-e4b1c7756582">
@@ -125,14 +119,6 @@
         <property name="AgentCIN" />
       </end2>
     </association>
-    <association name="Agent_Vehicle" cardinality="OneToOne" p1:Guid="7c51bf43-88e5-467d-8062-1f60f2b9f200">
-      <end1 multiplicity="One" name="Agent" class="Vehicle" relation-class="Agent" constrained="True" lazy="False" p1:inheritance-modifier="None" p1:Guid="110ea34f-ebc6-419b-b96f-deb42c3f1b13">
-        <property name="AgentCIN" />
-      </end1>
-      <end2 multiplicity="One" name="Vehicle" class="Agent" relation-class="Vehicle" constrained="False" lazy="False" p1:inheritance-modifier="None" p1:Guid="5449cde9-d461-45bf-b7a3-eee91406da22">
-        <property name="AgentCIN" />
-      </end2>
-    </association>
     <association name="Candidat_Seances" cardinality="OneToMany" p1:Guid="9516a4c7-9d91-4454-84ce-ef20dc7fcb2b">
       <end1 multiplicity="One" name="Candidat" class="Seances" relation-class="Candidat" constrained="True" lazy="False" p1:Guid="ecdbe026-b4b7-409f-bfd6-439fc5416c6d">
         <property name="CandidatCIN" />
@@ -155,6 +141,14 @@
       </end1>
       <end2 multiplicity="Many" name="Exams" class="Candidat" relation-class="Exam" lazy="False" p1:Guid="c9374570-f206-4aef-81de-508df32cf9f1">
         <property name="CandidatCIN" />
+      </end2>
+    </association>
+    <association name="Agent_Vehicle" cardinality="ManyToMany" table="Agents_Vehiciles" p1:Guid="dbf345c1-0574-4e8c-9140-23bdaeb53721">
+      <end1 multiplicity="Many" name="Agents" class="Vehicle" relation-class="Agent" lazy="False" p1:inheritance-modifier="None" p1:Guid="e084d379-dd38-4bec-a2d2-74d2b832b175">
+        <property name="AgentCIN" />
+      </end1>
+      <end2 multiplicity="Many" name="Vehicles" class="Agent" relation-class="Vehicle" lazy="False" p1:inheritance-modifier="None" p1:Guid="4130ffc9-809b-443d-b3a8-81dc4e4b346b">
+        <property name="Immatricule" />
       </end2>
     </association>
   </associations>
