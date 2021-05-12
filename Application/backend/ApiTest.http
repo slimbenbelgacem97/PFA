@@ -3,4 +3,8 @@
 GET https://localhost:5001/api/agent/details/111 HTTP/1.1
 ###
 GET https://localhost:5001/api/agent/details/114 HTTP/1.1
+###
+POST https://localhost:5001/api/agent/resgister HTTP/1.1
+    content-type: application/json
+{"nom":"slim","prenom":"ben belgacem","Id":"12345678","password":"azerty12","date":"2021-05-03","function":"Directeur","tel":"98765432","adresse":"Safx"}
 

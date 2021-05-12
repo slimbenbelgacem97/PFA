@@ -24,7 +24,6 @@ E:\PFA\Application\backend\bin\Debug\net5.0\backend.Views.pdb
 E:\PFA\Application\backend\bin\Debug\net5.0\AutoMapper.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Humanizer.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
@@ -45,11 +44,6 @@ E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Logging.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Newtonsoft.Json.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\NLog.dll
@@ -61,7 +55,6 @@ E:\PFA\Application\backend\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.
 E:\PFA\Application\backend\bin\Debug\net5.0\System.Collections.Immutable.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\System.ComponentModel.Annotations.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-E:\PFA\Application\backend\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\System.Text.Encodings.Web.dll
 E:\PFA\Application\backend\bin\Debug\net5.0\System.Text.Json.dll
@@ -95,3 +88,17 @@ E:\PFA\Application\backend\obj\Debug\net5.0\backend.RazorTargetAssemblyInfo.cs
 E:\PFA\Application\backend\obj\Debug\net5.0\backend.Views.pdb
 E:\PFA\Application\backend\obj\Debug\net5.0\backend.csproj.CopyComplete
 E:\PFA\Application\backend\obj\Debug\net5.0\backend.genruntimeconfig.cache
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Configuration.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+E:\PFA\Application\backend\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+E:\PFA\Application\backend\obj\Debug\net5.0\staticwebassets\backend.StaticWebAssets.xml

@@ -3,8 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using backend.Models;
-using backend.Data;
+using backend.Autoecole.DataAccess.Data;
 
 namespace backend.Migrations
 {
@@ -17,9 +16,222 @@ namespace backend.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.0-preview.2.21154.2");
 
-            modelBuilder.Entity("backend.Models.Agent", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<int>("AgentId")
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("backend.Autoecole.DataAccess.Data.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Adresse")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateEmb")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Fonction")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Salaire")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Agent", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -30,10 +242,14 @@ namespace backend.Migrations
                     b.Property<DateTime>("DateEmb")
                         .HasColumnType("TEXT");
 
-                    b.Property<short>("Fonction")
+                    b.Property<int>("Fonction")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -44,29 +260,35 @@ namespace backend.Migrations
                     b.Property<double>("Salaire")
                         .HasColumnType("REAL");
 
-                    b.HasKey("AgentId");
+                    b.HasKey("Id");
 
                     b.ToTable("Agents");
                 });
 
-            modelBuilder.Entity("backend.Models.Agent_Vehicule", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Agent_Vehicule", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("AgentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Immatricule")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("VehiculeId")
+                        .HasColumnType("INTEGER");
 
-                    b.HasKey("AgentId", "Immatricule");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Immatricule");
+                    b.HasIndex("AgentId");
+
+                    b.HasIndex("VehiculeId");
 
                     b.ToTable("Agents_Vehicules");
                 });
 
-            modelBuilder.Entity("backend.Models.Candidate", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Candidate", b =>
                 {
-                    b.Property<int>("CandidatCIN")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -74,8 +296,8 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ExamConvocation")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("ExamId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Naissance")
                         .HasColumnType("TEXT");
@@ -92,23 +314,27 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CandidatCIN");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ExamConvocation");
+                    b.HasIndex("ExamId");
 
                     b.ToTable("Candidates");
                 });
 
-            modelBuilder.Entity("backend.Models.Exam", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Exam", b =>
                 {
-                    b.Property<string>("Convocation")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CandidatCIN")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CandidatCIN1")
+                    b.Property<int?>("CandidatId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Convocation")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateExam")
                         .HasColumnType("TEXT");
@@ -120,110 +346,154 @@ namespace backend.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Convocation");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CandidatCIN1");
+                    b.HasIndex("CandidatId");
 
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("backend.Models.LoginAgent", b =>
-                {
-                    b.Property<int>("AgentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("AgentId");
-
-                    b.ToTable("LoginAgents");
-                });
-
-            modelBuilder.Entity("backend.Models.Seance", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Seance", b =>
                 {
                     b.Property<int>("AgentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CandidatCIN")
+                    b.Property<int>("CandidatId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateSeance")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("SeanceType")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("AgentId", "CandidatCIN", "DateSeance");
+                    b.HasKey("AgentId", "CandidatId", "DateSeance");
 
-                    b.HasIndex("CandidatCIN");
+                    b.HasIndex("CandidatId");
 
                     b.ToTable("Seances");
                 });
 
-            modelBuilder.Entity("backend.Models.Vehicule", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Vehicule", b =>
                 {
-                    b.Property<string>("Immatricule")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateCirculation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Immatricule")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Marque")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Immatricule");
+                    b.HasKey("Id");
 
                     b.ToTable("Vehicules");
                 });
 
-            modelBuilder.Entity("backend.Models.Agent_Vehicule", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("backend.Models.Agent", "Agent")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("backend.Autoecole.DataAccess.Data.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("backend.Autoecole.DataAccess.Data.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("backend.Autoecole.DataAccess.Data.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("backend.Autoecole.DataAccess.Data.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Agent_Vehicule", b =>
+                {
+                    b.HasOne("backend.Autoecole.Domain.Models.Entities.Agent", "Agent")
                         .WithMany("Vehicules")
                         .HasForeignKey("AgentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Models.Vehicule", "Vehicle")
+                    b.HasOne("backend.Autoecole.Domain.Models.Entities.Vehicule", "Vehicule")
                         .WithMany("Agents")
-                        .HasForeignKey("Immatricule")
+                        .HasForeignKey("VehiculeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Agent");
 
-                    b.Navigation("Vehicle");
+                    b.Navigation("Vehicule");
                 });
 
-            modelBuilder.Entity("backend.Models.Candidate", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Candidate", b =>
                 {
-                    b.HasOne("backend.Models.Exam", null)
+                    b.HasOne("backend.Autoecole.Domain.Models.Entities.Exam", null)
                         .WithMany("Candidates")
-                        .HasForeignKey("ExamConvocation");
+                        .HasForeignKey("ExamId");
                 });
 
-            modelBuilder.Entity("backend.Models.Exam", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Exam", b =>
                 {
-                    b.HasOne("backend.Models.Candidate", "Candidat")
+                    b.HasOne("backend.Autoecole.Domain.Models.Entities.Candidate", "Candidat")
                         .WithMany()
-                        .HasForeignKey("CandidatCIN1");
+                        .HasForeignKey("CandidatId");
 
                     b.Navigation("Candidat");
                 });
 
-            modelBuilder.Entity("backend.Models.Seance", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Seance", b =>
                 {
-                    b.HasOne("backend.Models.Agent", "Agent")
+                    b.HasOne("backend.Autoecole.Domain.Models.Entities.Agent", "Agent")
                         .WithMany("Seances")
                         .HasForeignKey("AgentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("backend.Models.Candidate", "Candidate")
+                    b.HasOne("backend.Autoecole.Domain.Models.Entities.Candidate", "Candidate")
                         .WithMany("Seances")
-                        .HasForeignKey("CandidatCIN")
+                        .HasForeignKey("CandidatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -232,24 +502,24 @@ namespace backend.Migrations
                     b.Navigation("Candidate");
                 });
 
-            modelBuilder.Entity("backend.Models.Agent", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Agent", b =>
                 {
                     b.Navigation("Seances");
 
                     b.Navigation("Vehicules");
                 });
 
-            modelBuilder.Entity("backend.Models.Candidate", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Candidate", b =>
                 {
                     b.Navigation("Seances");
                 });
 
-            modelBuilder.Entity("backend.Models.Exam", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Exam", b =>
                 {
                     b.Navigation("Candidates");
                 });
 
-            modelBuilder.Entity("backend.Models.Vehicule", b =>
+            modelBuilder.Entity("backend.Autoecole.Domain.Models.Entities.Vehicule", b =>
                 {
                     b.Navigation("Agents");
                 });
