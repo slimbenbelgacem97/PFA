@@ -17,8 +17,8 @@ namespace backend.Autoecole.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // builder.Entity<Agent_Vehicule>()
-            //                 .HasKey(av => new { av.AgentId, av.VehiculeId });
+            builder.Entity<Agent_Vehicule>()
+                            .HasKey(av => new { av.AgentId, av.Immatricule });
             builder.Entity<Agent_Vehicule>()
                         .HasOne(av => av.Agent)
                         .WithMany(av => av.Vehicules)
@@ -26,7 +26,7 @@ namespace backend.Autoecole.DataAccess.Data
             builder.Entity<Agent_Vehicule>()
                         .HasOne(av => av.Vehicule)
                         .WithMany(av => av.Agents)
-                        .HasForeignKey(av => av.VehiculeId).IsRequired(true);
+                        .HasForeignKey(av => av.Immatricule).IsRequired(true);
 
             builder.Entity<Candidate>()
                         .HasMany(x => x.Seances)
@@ -39,9 +39,7 @@ namespace backend.Autoecole.DataAccess.Data
                         .HasForeignKey(op => op.AgentId).IsRequired(true);
             builder.Entity<Seance>()
             .HasKey(s => new { s.AgentId, s.CandidatId, s.DateSeance });
-            // builder.Entity<Vehicule>()
-            // .HasAlternateKey(c => c.Immatricule)
-            // .HasName("Immatricule");
+           
 
 
         }

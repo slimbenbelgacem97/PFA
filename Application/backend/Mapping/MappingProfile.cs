@@ -13,6 +13,7 @@
 using AutoMapper;
 using backend.Autoecole.Api.Resources;
 using backend.Autoecole.Api.Resources.Agent;
+using backend.Autoecole.Api.Resources.Seance;
 using backend.Autoecole.DataAccess.Data;
 using backend.Autoecole.Domain.Models.Entities;
 
@@ -29,10 +30,18 @@ namespace backend.Mapping
             CreateMap<AgentLogin, ApplicationUser>();
             CreateMap<AgentRegister, ApplicationUser>()
             .ForMember(u => u.PhoneNumber, opt => opt.MapFrom(x => x.PhoneNumber));
+
             CreateMap<Candidate, CandidatResource>();
+            CreateMap<CandidatResource, Candidate>();
+
             CreateMap<Seance, SeanceResource>();
-            CreateMap<Agent_Vehicule, Agent_VehiculeResource>(); 
+            CreateMap<Seance, SeanceCandidateResource>();
+            CreateMap<Seance, SeanceAgentResource>();
+
+            CreateMap<Agent_Vehicule, Agent_VehiculeResource>();
+
             CreateMap<Vehicule, VehicleResource>();
+            CreateMap<VehicleResource, Vehicule>();
 
 
         }

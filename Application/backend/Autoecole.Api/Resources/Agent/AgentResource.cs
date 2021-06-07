@@ -6,7 +6,7 @@ namespace backend.Autoecole.Api.Resources
 {
     public class AgentResource
     {
-        public int AgentId { get; set; }
+        public int Id { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string PhoneNumber { get; set; }

@@ -7,5 +7,6 @@ namespace backend.Autoecole.Domain.Services.IRepositories
     {
         public Agent GetAgentByVehiculeId(string vehiculeId);
         public Vehicule GetVehiculeByAgentId(int AgentId);
+        public void AssignVehicleToAgent(int agentId, string vehiculeId);
     }
 }

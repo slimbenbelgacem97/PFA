@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using backend.Autoecole.DataAccess.Data;
 using backend.Autoecole.Domain.Models.Entities;
 using backend.Autoecole.Domain.Services.IRepositories;
@@ -19,6 +20,16 @@ namespace backend.Autoecole.DataAccess.Repositories
         public Vehicule GetVehiculeByAgentId(int agentId)
         {
             throw new System.NotImplementedException();
+
+        }
+        public void AssignVehicleToAgent(int agentId, string vehiculeId)
+        {
+            var assignment = new Agent_Vehicule
+            {
+                AgentId = agentId,
+                Immatricule = vehiculeId
+            };
+            base.Create(assignment); 
 
         }
     }

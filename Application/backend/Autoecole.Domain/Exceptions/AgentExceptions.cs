@@ -1,4 +1,4 @@
-namespace backend.Autoecole.Domain.Exreptions
+namespace backend.Autoecole.Domain.Exceptions
 {
     public class AgentExceptions
     {

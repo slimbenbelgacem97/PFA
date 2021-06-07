@@ -12,7 +12,7 @@ namespace backend.Autoecole.DataAccess.Repositories
         private ISeanceRepository seanceRepository;
         private ICandidatRepository candidatRepository;
         private IVehiculeRepository vehiculeRepository;
-        // private IInscriptionRepository inscriptionRepository;
+        private IAgents_VehiculesRepository agents_VehiculesRepository;
 
         public IAgentRepository Agent
         {
@@ -63,7 +63,18 @@ namespace backend.Autoecole.DataAccess.Repositories
             set { }
         }
 
-        
+        public IAgents_VehiculesRepository Agents_Vehicules
+        {
+            get
+            {
+                if (agents_VehiculesRepository == null)
+                {
+                    agents_VehiculesRepository = new Agents_VehiculesRepository(context);
+                }
+                return agents_VehiculesRepository;
+            }
+            set { }
+        }
 
         public UnitofWork(ModelContextV2 context)
         {
@@ -91,9 +102,9 @@ namespace backend.Autoecole.DataAccess.Repositories
         public void Dispose()
         {
             Dispose(true);
-            
+
         }
 
-       
+
     }
 }

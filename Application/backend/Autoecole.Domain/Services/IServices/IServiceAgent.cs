@@ -12,10 +12,8 @@ namespace backend.Autoecole.Domain.Services.IServices
         public Agent GetAgent(int id);
         public Agent GetAgentDetaillsResource(int id);
         public void AddAgent(Agent agent);
-        public void AdminRegistry(ApplicationUser admin, string pwd);
-        public  Task<string> Login(AgentLogin agent);
-        public void LogOut();
-        public Task<ApplicationUser> GetAgentByUsername(string username);
+        public void UpdateAgent(Agent agent);
+        public void DeleteAgent(int id);
 
     }
 }

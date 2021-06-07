@@ -29,6 +29,7 @@ namespace backend.Autoecole.DataAccess.Repositories
             return FindByCondition(agent => agent.Id == agentId)
                 .FirstOrDefault();
         }
+       
         public Agent GetDetailsAgentById(int agentId)
         {
             return FindByCondition(a => a.Id == agentId)

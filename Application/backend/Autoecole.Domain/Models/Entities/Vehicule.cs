@@ -5,11 +5,9 @@ using backend.Autoecole.Domain.Abstract;
 
 namespace backend.Autoecole.Domain.Models.Entities
 {
-    public class Vehicule:IEntity<int>
+    public class Vehicule
     {
         [Key]
-        public int Id { get; set; }
-        
         public string Immatricule { get; set; }
 
         public string Marque { get; set; }

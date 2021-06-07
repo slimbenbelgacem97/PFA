@@ -2,33 +2,21 @@ using System;
 using System.Collections.Generic;
 using backend.Logging;
 using backend.Autoecole.Domain.Models.Entities;
-using backend.Autoecole.Domain.Exreptions;
 using backend.Autoecole.Domain.Services.IServices;
 using backend.Autoecole.Domain.Abstract;
-using backend.Autoecole.Domain.Models.Types;
-using Microsoft.AspNetCore.Identity;
-using backend.Autoecole.DataAccess.Data;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using backend.Autoecole.Api.Resources.Agent;
-
+using backend.Autoecole.Domain.Exceptions;
 namespace backend.Autoecole.Domain.Services
 {
     public class SrevicesAgent : IServiceAgent
     {
+
         private readonly ILoggerManager loggerManager;
         private readonly IUnitofWork context;
 
-        private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly UserManager<ApplicationUser> userManager;
 
-        public SrevicesAgent(IUnitofWork context, ILoggerManager loggerManager, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public SrevicesAgent(IUnitofWork context, ILoggerManager loggerManager)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+
             this.context = context;
             this.loggerManager = loggerManager;
 
@@ -78,11 +66,10 @@ namespace backend.Autoecole.Domain.Services
                 return (agent);
             }
         }
-
         public void AddAgent(Agent agent)
 
         {
-            var AgentExist = context.Agent.GetAgentById (agent.Id);
+            var AgentExist = context.Agent.GetAgentById(agent.Id);
             if (AgentExist != null)
             {
                 throw new Exception(AgentExceptions.AgentExist);
@@ -90,82 +77,45 @@ namespace backend.Autoecole.Domain.Services
             else
             {
                 context.Agent.Create(agent);
-               // context.Save();
                 loggerManager.LogInfo($"New Agent with ID: {agent.Id}, Name: {agent.Nom} has been added.");
 
             }
 
         }
 
-        public async void AdminRegistry(ApplicationUser agent, string pwd)
+        public void UpdateAgent(Agent agent)
         {
-            var user = await userManager.FindByIdAsync(agent.UserName);
-            if (user != null){
-                if (user.Fonction == AgentFunction.Directeur) 
-                {
-                    throw new Exception(AgentExceptions.AdminExist);
-                }
+
+            var agentExist = context.Agent.GetAgentById(agent.Id);
+            if (agentExist == null)
+            {
+                loggerManager.LogError($"Agent [ ID: {agent.Id}], hasn't been found in db.");
+                throw new Exception(AgentExceptions.AgentNotExist);
             }
             else
             {
-                ///dans le cas où le  directeur a le role de gestion seulement
-                var result = userManager.CreateAsync(agent, pwd);
-                ///Sinon 
-
+                context.Agent.Update(agent);
                 context.Save();
-                loggerManager.LogInfo($"The Admin [ID: {agent.Id}, Name: {agent.Nom}]has been added.");
+                loggerManager.LogInfo($"Agent [ID:{agent.Id}] has been updated.");
             }
         }
 
-        public async Task<string> Login(AgentLogin agent)
+        public void DeleteAgent(int id)
         {
-            var user = await userManager.FindByIdAsync(agent.UserName);
-            if (user != null &&
-                 await userManager.CheckPasswordAsync(user, agent.Password))
+            var agentToDeelete = context.Agent.GetAgentById(id);
+            if(agentToDeelete == null)
             {
-                var claims = new[]
+                loggerManager.LogError($"Agent [ ID: {id}], hasn't been found in db.");
+                throw new Exception(AgentExceptions.AgentNotExist);
+            }
+            else
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "some_id"),
-              //  new Claim("granny", "cookie")
-            };
-
-            var secretBytes = Encoding.UTF8.GetBytes(Constants.Secret);
-            var key = new SymmetricSecurityKey(secretBytes);
-            var algorithm = SecurityAlgorithms.HmacSha256;
-
-            var signingCredentials = new SigningCredentials(key, algorithm);
-
-            var token = new JwtSecurityToken(
-                Constants.Issuer,
-                Constants.Audiance,
-                claims,
-                notBefore: DateTime.Now,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials);
-
-            var tokenJson = new JwtSecurityTokenHandler().WriteToken(token);
-                return tokenJson;
-            }else
-            {
-                throw new Exception();
+                context.Agent.Delete(agentToDeelete);
+                context.Save();
+                loggerManager.LogInfo($"The agent [Id:{id} ] has been deleted.");
             }
         }
-         public async void LogOut()
-        {
-            await signInManager.SignOutAsync();
-        }
-        
-        public Task<ApplicationUser> GetAgentByUsername(string username)
-        {
-            return userManager.FindByIdAsync(username);
-        }
+
     }
 
-       
-    public static class Constants
-    {
-        public const string Issuer = Audiance;
-        public const string Audiance = "https://localhost:5001/";
-        public const string Secret = "not_too_short_secret_otherwise_it_might_error";
-    }
 }

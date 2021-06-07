@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using backend.Autoecole.DataAccess.Data;
@@ -20,22 +21,31 @@ namespace backend.Autoecole.DataAccess.Repositories
                 .OrderBy(sc => sc.DateSeance)
                 .ToList();
         }
-        public Seance GetSeancesByType(SeanceType seanceType)
+        public IEnumerable<Seance> GetSeancesByType(SeanceType seanceType)
         {
             return FindByCondition(sc => sc.SeanceType.Equals(seanceType))
-                    .FirstOrDefault();
+                   .OrderBy(s => s.SeanceType);
 
 
         }
-        public Seance GetSeancesByAgentId(int id)
+        public Seance GetSeanceByAgentId(int id)
         {
             return FindByCondition(sc => sc.Agent.Id == id)
                     .FirstOrDefault();
         }
-        public Seance GetSeancesByCandidateId(int id)
+        public ICollection<Seance> GetSeancesByCandidateId(int id)
         {
             return FindByCondition(sc => sc.Candidate.Id == id)
-                    .FirstOrDefault();
+                    .OrderBy(s => s.DateSeance)
+                    .ToList();
+        }
+        public IEnumerable<Seance> GetSeancesByAgentId(int agentId)
+        {
+            return FindByCondition(a => a.AgentId== agentId).OrderBy(s =>s.DateSeance).ToList();
+        }
+        public void AssignSeanceToAgent(Seance seance)
+        {
+            base.Create(seance);
         }
     }
 }

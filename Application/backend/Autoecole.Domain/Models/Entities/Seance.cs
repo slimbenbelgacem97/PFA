@@ -6,10 +6,10 @@ using backend.Autoecole.Domain.Models.Types;
 
 namespace backend.Autoecole.Domain.Models.Entities
 {
-    public class Seance : IEntity<int>
+    public class Seance 
     {
-        [Key]
-        public int Id { get ; set; }
+        
+        
         public DateTime DateSeance { get; set; }
         public SeanceType SeanceType { get; set; }
 

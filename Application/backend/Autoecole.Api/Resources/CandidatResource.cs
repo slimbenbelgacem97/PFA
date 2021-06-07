@@ -3,7 +3,7 @@ namespace backend.Autoecole.Api.Resources
 {
     public class CandidatResource
     {
-        public int CandidatCIN { get; set; }
+        public int Id { get; set; }
 
         public string Nom { get; set; }
 

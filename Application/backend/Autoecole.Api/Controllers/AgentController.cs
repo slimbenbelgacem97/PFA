@@ -6,28 +6,29 @@ using backend.Autoecole.Domain.Models.Entities;
 using backend.Autoecole.Domain.Services.IServices;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
-using backend.Autoecole.Api.Resources.Agent;
-using backend.Autoecole.DataAccess.Data;
+using backend.Autoecole.Api.Resources.Seance;
 
 namespace backend.Autoecole.Api.Controllers
 {
     [ApiController]
-   //[Authorize]
     [Route("api/[controller]")]
+    //[Authorize]
     public class AgentController : ControllerBase
     {
         private readonly IMapper mapper;
+        private readonly IServiceSeance serviceSeance;
 
         private readonly IServiceAgent serviceAgent;
-        public AgentController(IServiceAgent serviceAgent, IMapper mapper)
+        public AgentController(IServiceAgent serviceAgent, IServiceSeance serviceSeance, IMapper mapper)
         {
+            this.serviceSeance = serviceSeance;
             this.mapper = mapper;
             this.serviceAgent = serviceAgent;
 
         }
         // GET : api/agent
         [HttpGet]
-        
+
         public IActionResult GetAllAgents()
         {
             try
@@ -49,7 +50,7 @@ namespace backend.Autoecole.Api.Controllers
             {
                 var agents = serviceAgent.GetAgent(id);
                 var agentResource = mapper.Map<AgentResource>(agents);
-                if (agents== null)
+                if (agents == null)
                 {
                     return NotFound();
                 }
@@ -71,9 +72,10 @@ namespace backend.Autoecole.Api.Controllers
             {
                 var agent = serviceAgent.GetAgentDetaillsResource(id);
                 var agentResult = mapper.Map<AgentResource>(agent);
-                var seances = mapper.Map<ICollection<Seance>,ICollection<SeanceResource>>(agent.Seances);
+                var s = serviceSeance.GetSenacesByAgentId(id);
+                var seances = mapper.Map<IEnumerable<Seance>, ICollection<SeanceAgentResource>>(s);
                 var vehicule = mapper.Map<ICollection<Agent_VehiculeResource>>(agent.Vehicules);
-                return Ok(new{agentResult, seances, vehicule});
+                return Ok(new { agentResult, seances, vehicule });
             }
             catch (Exception ex)
             {
@@ -92,59 +94,39 @@ namespace backend.Autoecole.Api.Controllers
             }
             catch (Exception ex)
             {
-                
+
                 return BadRequest(ex.Message);
             }
         }
 
-
-        //POST : api/agent/register
-        // [AllowAnonymous]
-        // [HttpPost("register")]
-        // public IActionResult Register(AgentRegister agentRegister)
-        // {
-        //     try
-        //     {
-        //         var agent = mapper.Map<ApplicationUser>(agentRegister);
-        //         serviceAgent.AdminRegistry(agent,agentRegister.Password);
-        //         return Ok(agent);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest(ex.Message);
-        //     }
-        // }
-
-
-
-
-
-        // [HttpPut("update/{id?}")]
-        // public IActionResult UpdateAgent(Agent updatedAgent)
-        // {
-        //     try
-        //     {
-        //         var agent = context.Agent.GetAgentById(updatedAgent.AgentId);
-        //         if (agent == null)
-        //         {
-        //             loggerManager.LogError($"Agent [ ID: {updatedAgent.AgentId}], hasn't been found in db.");
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             context.Agent.Update(updatedAgent);
-        //             context.Save();
-        //             loggerManager.LogInfo($"Agent [ID:{updatedAgent.AgentId}] has been updated.");
-        //             return Ok(updatedAgent);
-        //         }
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         loggerManager.LogError($"Something went wrong while updating  agent  :{ex.Message}");
-        //         return StatusCode(500, "Internal Server Error");
-        //     }
-        // }
-
-
+        //PUT :api/agent/update/1233547
+        [HttpPut("update/{id}")]
+        public IActionResult UpdateAgent(AgentResource updatedAgent)
+        {
+            try
+            {
+                var _agent_to_update = mapper.Map<Agent>(updatedAgent);
+                serviceAgent.UpdateAgent(_agent_to_update);
+                return Ok(_agent_to_update);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        //DELETE : api/agent/delete/1234576
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteAgent(int agentId)
+        {
+            try
+            {
+                serviceAgent.DeleteAgent(agentId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

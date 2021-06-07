@@ -8,6 +8,7 @@ namespace backend.Autoecole.Domain.Services.IRepositories
         public IEnumerable<Agent> GetAllAgents();
         public Agent GetAgentById(int agentId);
         public Agent GetDetailsAgentById(int AgentId);
+        
 
     }
 }

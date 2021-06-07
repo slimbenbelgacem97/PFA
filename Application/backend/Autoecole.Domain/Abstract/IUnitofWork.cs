@@ -11,6 +11,7 @@ namespace backend.Autoecole.Domain.Abstract
         public ICandidatRepository Candidate { get; set; }
         public ISeanceRepository Seance { get; set; }
         public IVehiculeRepository Vehicule { get; set; }
+        public IAgents_VehiculesRepository Agents_Vehicules { get; set; }
         void Save();
        
     }

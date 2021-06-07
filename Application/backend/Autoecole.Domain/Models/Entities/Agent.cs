@@ -29,5 +29,6 @@ namespace backend.Autoecole.Domain.Models.Entities
 
         public  ICollection<Seance> Seances { get; set; }     
         public  ICollection<Agent_Vehicule> Vehicules { get; set; }
+        
     }
 }

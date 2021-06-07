@@ -8,8 +8,9 @@ namespace backend.Autoecole.Domain.Services.IRepositories
     public interface ISeanceRepository : IGenericRepositry<Seance>
     {
         public IEnumerable<Seance> GetSeances();
-        public Seance GetSeancesByType(SeanceType seanceType);
-        public Seance GetSeancesByAgentId(int id);
-        public Seance GetSeancesByCandidateId(int id);
+        public IEnumerable<Seance> GetSeancesByType(SeanceType seanceType);
+        public Seance GetSeanceByAgentId(int id);
+        public ICollection<Seance> GetSeancesByCandidateId(int id);
+        public IEnumerable<Seance> GetSeancesByAgentId(int agentId);
     }
 }

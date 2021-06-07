@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace backend.Migrations
 {
-    public partial class IdentityAuth : Migration
+    public partial class vehiculeImmat1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,10 +15,11 @@ namespace backend.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nom = table.Column<string>(type: "TEXT", nullable: false),
                     Prenom = table.Column<string>(type: "TEXT", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: false),
                     DateEmb = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Adresse = table.Column<string>(type: "TEXT", nullable: false),
                     Salaire = table.Column<double>(type: "REAL", nullable: false),
-                    Fonction = table.Column<short>(type: "INTEGER", nullable: false)
+                    Fonction = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,6 +45,12 @@ namespace backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Nom = table.Column<string>(type: "TEXT", nullable: false),
+                    Prenom = table.Column<string>(type: "TEXT", nullable: false),
+                    DateEmb = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Adresse = table.Column<string>(type: "TEXT", nullable: false),
+                    Salaire = table.Column<double>(type: "REAL", nullable: false),
+                    Fonction = table.Column<int>(type: "INTEGER", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -68,15 +75,13 @@ namespace backend.Migrations
                 name: "Vehicules",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Immatricule = table.Column<string>(type: "TEXT", nullable: true),
+                    Immatricule = table.Column<string>(type: "TEXT", nullable: false),
                     Marque = table.Column<string>(type: "TEXT", nullable: true),
                     DateCirculation = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vehicules", x => x.Id);
+                    table.PrimaryKey("PK_Vehicules", x => x.Immatricule);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,14 +194,12 @@ namespace backend.Migrations
                 name: "Agents_Vehicules",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
                     AgentId = table.Column<int>(type: "INTEGER", nullable: false),
-                    VehiculeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Immatricule = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agents_Vehicules", x => x.Id);
+                    table.PrimaryKey("PK_Agents_Vehicules", x => new { x.AgentId, x.Immatricule });
                     table.ForeignKey(
                         name: "FK_Agents_Vehicules_Agents_AgentId",
                         column: x => x.AgentId,
@@ -204,10 +207,10 @@ namespace backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Agents_Vehicules_Vehicules_VehiculeId",
-                        column: x => x.VehiculeId,
+                        name: "FK_Agents_Vehicules_Vehicules_Immatricule",
+                        column: x => x.Immatricule,
                         principalTable: "Vehicules",
-                        principalColumn: "Id",
+                        principalColumn: "Immatricule",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -275,14 +278,9 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Agents_Vehicules_AgentId",
+                name: "IX_Agents_Vehicules_Immatricule",
                 table: "Agents_Vehicules",
-                column: "AgentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agents_Vehicules_VehiculeId",
-                table: "Agents_Vehicules",
-                column: "VehiculeId");
+                column: "Immatricule");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
